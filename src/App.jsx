@@ -7,7 +7,7 @@ import { action as LoginAction } from "./pages/Login";
 function App() {
   const routes = createBrowserRouter([
     {
-      path: "/",
+      path: "/login",
       errorElement: <ErrorPage />,
       element: <MainLayouts />,
       children: [
