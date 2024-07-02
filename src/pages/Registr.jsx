@@ -16,8 +16,11 @@ export const action = async ({ request }) => {
   };
 };
 
+import { useRegister } from "../hooks/useRegistr";
+
 function Registr() {
   const userData = useActionData();
+  const { registerWithGoogle, isPeinding } = useRegister();
 
   useEffect(() => {
     if (userData) {
@@ -65,7 +68,11 @@ function Registr() {
           </div>
 
           <div className="w-full">
-            <button type="button" className="btn btn-secondary btn-block">
+            <button
+              onClick={registerWithGoogle}
+              type="button"
+              className="btn btn-secondary btn-block"
+            >
               Google
             </button>
           </div>
