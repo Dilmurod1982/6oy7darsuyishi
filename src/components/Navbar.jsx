@@ -55,11 +55,21 @@ function Navbar() {
                 <span>{user.displayName}</span>
               </a>
             </li>
-
             <li>
-              <button onClick={signOutProfile} className="btn btn-secondary">
-                LogOut
-              </button>
+              <a className="justify-between">
+                Email
+                <span>{user.email}</span>
+              </a>
+            </li>
+            <li>
+              <div className="flex justify-center">
+                <button
+                  onClick={signOutProfile}
+                  className="btn btn-secondary w-[150px] h-[30px] "
+                >
+                  LogOut
+                </button>
+              </div>
             </li>
           </ul>
         </div>
