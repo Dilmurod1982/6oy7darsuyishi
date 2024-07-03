@@ -42,7 +42,7 @@ function Registr() {
           method="post"
           className="flex flex-col gap-2 w-96 bg-base-100 shadow-xl p-10 rounded-lg"
         >
-          <h1 className="text-3xl font-semibold text-center">Registr</h1>
+          <h1 className="text-3xl font-semibold text-center">Register</h1>
           <FormInput
             label="displayName"
             type="text"
