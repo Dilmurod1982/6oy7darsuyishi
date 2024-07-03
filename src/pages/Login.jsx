@@ -2,6 +2,7 @@ import { Form, Link, useActionData } from "react-router-dom";
 import { FormInput } from "../components";
 import { useEffect } from "react";
 import { useRegister } from "../hooks/useRegistr";
+import { useLogin } from "../hooks/useLogin";
 
 export const action = async ({ request }) => {
   let formData = await request.formData();
@@ -15,11 +16,12 @@ export const action = async ({ request }) => {
 
 function LogIn() {
   const userData = useActionData();
-  const { isPeinding, registerWithGoogle } = useRegister();
+  const { isPending, registerWithGoogle } = useRegister();
+  const { isPending: isPendingLogin, signIn } = useLogin(false);
 
   useEffect(() => {
     if (userData) {
-      console.log(userData);
+      signIn(userData.email, userData.password);
     }
   }, [userData]);
   return (
@@ -44,18 +46,29 @@ function LogIn() {
             placeholder="Your password"
           />
           <div>
-            <button type="submit" className="btn btn-primary btn-block">
-              Login
-            </button>
+            {isPendingLogin && (
+              <button
+                disabled
+                type="button"
+                className="btn btn-primary btn-block"
+              >
+                Loading ...
+              </button>
+            )}
+            {!isPendingLogin && (
+              <button type="submit" className="btn btn-primary btn-block">
+                Login
+              </button>
+            )}
           </div>
 
           <div className="w-full">
-            {isPeinding && (
+            {isPending && (
               <button type="button" className="btn btn-secondary btn-block">
                 Loading ...
               </button>
             )}
-            {!isPeinding && (
+            {!isPending && (
               <button
                 onClick={registerWithGoogle}
                 type="button"

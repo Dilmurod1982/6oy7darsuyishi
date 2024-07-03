@@ -10,7 +10,7 @@ import { useGlobalContext } from "./useGlobalContext";
 import { toast } from "react-hot-toast";
 
 export const useRegister = () => {
-  const [isPeinding, setIsPending] = useState(false);
+  const [isPending, setIsPending] = useState(false);
   const { dispatch } = useGlobalContext();
   const registerWithGoogle = async () => {
     try {
@@ -53,5 +53,5 @@ export const useRegister = () => {
     }
   };
 
-  return { registerWithGoogle, isPeinding, registerEmailAndPassword };
+  return { registerWithGoogle, isPending, registerEmailAndPassword };
 };

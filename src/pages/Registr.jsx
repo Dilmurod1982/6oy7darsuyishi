@@ -20,7 +20,7 @@ import { useRegister } from "../hooks/useRegistr";
 
 function Registr() {
   const userData = useActionData();
-  const { registerWithGoogle, isPeinding, registerEmailAndPassword } =
+  const { registerWithGoogle, isPending, registerEmailAndPassword } =
     useRegister();
 
   useEffect(() => {
@@ -68,12 +68,12 @@ function Registr() {
             placeholder="Your password"
           />
           <div className="mt-6">
-            {isPeinding && (
+            {isPending && (
               <button type="button" className="btn btn-primary btn-block">
                 Loading ...
               </button>
             )}
-            {!isPeinding && (
+            {!isPending && (
               <button type="submit" className="btn btn-primary btn-block">
                 Register
               </button>
@@ -81,12 +81,12 @@ function Registr() {
           </div>
 
           <div className="w-full">
-            {isPeinding && (
+            {isPending && (
               <button type="button" className="btn btn-secondary btn-block">
                 Loading ...
               </button>
             )}
-            {!isPeinding && (
+            {!isPending && (
               <button
                 onClick={registerWithGoogle}
                 type="button"
