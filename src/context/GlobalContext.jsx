@@ -21,6 +21,9 @@ function GlobalContextProvider({ children }) {
   const [state, dispatch] = useReducer(changeState, {
     user: null,
     isAuthReady: false,
+    products: [],
+    totalProducts: 0,
+    totalPrice: 0,
   });
   return (
     <GlobalContext.Provider value={{ ...state, dispatch }}>
