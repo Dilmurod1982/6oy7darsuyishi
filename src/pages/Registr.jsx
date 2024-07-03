@@ -20,11 +20,17 @@ import { useRegister } from "../hooks/useRegistr";
 
 function Registr() {
   const userData = useActionData();
-  const { registerWithGoogle, isPeinding } = useRegister();
+  const { registerWithGoogle, isPeinding, registerEmailAndPassword } =
+    useRegister();
 
   useEffect(() => {
     if (userData) {
-      console.log(userData);
+      registerEmailAndPassword(
+        userData.email,
+        userData.password,
+        userData.displayName,
+        userData.photoURL
+      );
     }
   }, [userData]);
 
@@ -62,19 +68,37 @@ function Registr() {
             placeholder="Your password"
           />
           <div className="mt-6">
-            <button type="submit" className="btn btn-primary btn-block">
-              Registr
-            </button>
+            {isPeinding && (
+              <button type="button" className="btn btn-primary btn-block">
+                Loading ...
+              </button>
+            )}
+            {!isPeinding && (
+              <button
+                onClick={registerEmailAndPassword}
+                type="submit"
+                className="btn btn-primary btn-block"
+              >
+                Register
+              </button>
+            )}
           </div>
 
           <div className="w-full">
-            <button
-              onClick={registerWithGoogle}
-              type="button"
-              className="btn btn-secondary btn-block"
-            >
-              Google
-            </button>
+            {isPeinding && (
+              <button type="button" className="btn btn-secondary btn-block">
+                Loading ...
+              </button>
+            )}
+            {!isPeinding && (
+              <button
+                onClick={registerWithGoogle}
+                type="button"
+                className="btn btn-secondary btn-block"
+              >
+                Google
+              </button>
+            )}
           </div>
           <div>
             <p className="text-center text-slate-400">

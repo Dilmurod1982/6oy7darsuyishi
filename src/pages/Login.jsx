@@ -1,6 +1,7 @@
 import { Form, Link, useActionData } from "react-router-dom";
 import { FormInput } from "../components";
 import { useEffect } from "react";
+import { useRegister } from "../hooks/useRegistr";
 
 export const action = async ({ request }) => {
   let formData = await request.formData();
@@ -14,6 +15,7 @@ export const action = async ({ request }) => {
 
 function LogIn() {
   const userData = useActionData();
+  const { isPeinding, registerWithGoogle } = useRegister();
 
   useEffect(() => {
     if (userData) {
@@ -48,9 +50,20 @@ function LogIn() {
           </div>
 
           <div className="w-full">
-            <button type="button" className="btn btn-secondary btn-block">
-              Google
-            </button>
+            {isPeinding && (
+              <button type="button" className="btn btn-secondary btn-block">
+                Loading ...
+              </button>
+            )}
+            {!isPeinding && (
+              <button
+                onClick={registerWithGoogle}
+                type="button"
+                className="btn btn-secondary btn-block"
+              >
+                Google
+              </button>
+            )}
           </div>
           <div>
             <p className="text-center text-slate-400">
