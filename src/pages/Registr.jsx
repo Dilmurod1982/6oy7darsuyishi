@@ -74,11 +74,7 @@ function Registr() {
               </button>
             )}
             {!isPeinding && (
-              <button
-                onClick={registerEmailAndPassword}
-                type="submit"
-                className="btn btn-primary btn-block"
-              >
+              <button type="submit" className="btn btn-primary btn-block">
                 Register
               </button>
             )}
