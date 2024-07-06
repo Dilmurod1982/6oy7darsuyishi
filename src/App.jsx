@@ -3,10 +3,21 @@ import {
   Navigate,
   RouterProvider,
 } from "react-router-dom";
-import { Home, About, Contact, Login, Registr, ErrorPage } from "./pages";
+import {
+  Home,
+  About,
+  Contact,
+  Login,
+  Registr,
+  ErrorPage,
+  SingleProduct,
+} from "./pages";
 import MainLayouts from "./layouts/MainLayouts";
 import { action as RegistrAction } from "./pages/Registr";
 import { action as LoginAction } from "./pages/Login";
+import { loader as HomeLoader } from "./pages/Home";
+import { loader as SingleProductLoader } from "./pages/SingleProduct";
+
 import ProtectedRoutes from "./components/ProtectedRoutes";
 import { useGlobalContext } from "./hooks/useGlobalContext";
 import { useEffect } from "react";
@@ -29,6 +40,7 @@ function App() {
           index: true,
           errorElement: <ErrorPage />,
           element: <Home />,
+          loader: HomeLoader,
         },
         {
           path: "about",
@@ -39,6 +51,12 @@ function App() {
           path: "contact",
           errorElement: <ErrorPage />,
           element: <Contact />,
+        },
+        {
+          path: "/singleProduct/:id",
+          errorElement: <ErrorPage />,
+          element: <SingleProduct />,
+          loader: SingleProductLoader,
         },
       ],
     },
