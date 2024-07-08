@@ -2,7 +2,7 @@ import { FaTrashAlt } from "react-icons/fa";
 import { useGlobalContext } from "../hooks/useGlobalContext";
 
 function TableItem({ prod }) {
-  const { incrementAmount } = useGlobalContext();
+  const { incrementAmount, decrementAmount } = useGlobalContext();
 
   return (
     <tr>
@@ -39,7 +39,12 @@ function TableItem({ prod }) {
           +
         </button>
         <p>{prod.amount}</p>
-        <button className="btn btn-info btn-sm">-</button>
+        <button
+          onClick={() => decrementAmount(prod.id)}
+          className="btn btn-info btn-sm"
+        >
+          -
+        </button>
       </td>
       <th>
         <button className="btn  btn-xs">
