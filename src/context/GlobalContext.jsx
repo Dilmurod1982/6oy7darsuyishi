@@ -1,3 +1,4 @@
+import { produce } from "immer";
 import { createContext, useEffect, useReducer } from "react";
 
 export const GlobalContext = createContext();
@@ -53,7 +54,7 @@ function GlobalContextProvider({ children }) {
               product.amount);
           const updatedAmounts = state.products.map((prod) => {
             if (prod.id == updatedAmount.id) {
-              return {...prod, amount: updatedAmount.amount };
+              return { ...prod, amount: updatedAmount.amount };
             } else {
               return prod;
             }
@@ -72,6 +73,34 @@ function GlobalContextProvider({ children }) {
     }
   };
 
+  //increment
+  const incrementAmount = (id) => {
+    function toggleTodo(state, id) {
+      return produce(state, (draft) => {
+        const product = draft.products.find((prod) => prod.id === id);
+        product.amount = product.amount + 1;
+      });
+    }
+    const { products } = toggleTodo(state, id);
+    dispatch({
+      type: "ADD_PRODUCT",
+      payload: products,
+    });
+  };
+  const decrementAmount = (id) => {
+    function toggleTodo(state, id) {
+      return produce(state, (draft) => {
+        const product = draft.products.find((prod) => prod.id === id);
+        product.amount = product.amount - 1;
+      });
+    }
+    const { products } = toggleTodo(state, id);
+    dispatch({
+      type: "ADD_PRODUCT",
+      payload: products,
+    });
+  };
+
   useEffect(() => {
     let totalCount = 0;
     state.products.forEach((product) => {
@@ -81,7 +110,15 @@ function GlobalContextProvider({ children }) {
   }, [state.products]);
 
   return (
-    <GlobalContext.Provider value={{ ...state, dispatch, addToCart }}>
+    <GlobalContext.Provider
+      value={{
+        ...state,
+        dispatch,
+        addToCart,
+        incrementAmount,
+        decrementAmount,
+      }}
+    >
       {children}
     </GlobalContext.Provider>
   );
