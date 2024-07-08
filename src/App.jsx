@@ -11,6 +11,7 @@ import {
   Registr,
   ErrorPage,
   SingleProduct,
+  Cart,
 } from "./pages";
 import MainLayouts from "./layouts/MainLayouts";
 import { action as RegistrAction } from "./pages/Registr";
@@ -58,6 +59,11 @@ function App() {
           element: <SingleProduct />,
           loader: SingleProductLoader,
         },
+        {
+          path: "/cart",
+          errorElement: <ErrorPage />,
+          element: <Cart />,
+        }
       ],
     },
     {
