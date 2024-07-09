@@ -40,6 +40,7 @@ function TableItem({ prod }) {
         </button>
         <p>{prod.amount}</p>
         <button
+          disabled={prod.amount === 0}
           onClick={() => decrementAmount(prod.id)}
           className="btn btn-info btn-sm"
         >
